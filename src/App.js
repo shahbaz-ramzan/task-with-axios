@@ -7,7 +7,7 @@ import AxiosData from './AxiosData';
 function App() {
   return (
     <div className="App">
-  
+    <Practice />
     <AxiosData />
     </div>
   );

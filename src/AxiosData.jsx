@@ -8,7 +8,7 @@ function AxiosData() {
   const [filter, setFilter] = useState(null);
   const [checkbox,setCheckBox]=useState("default");
   const [algorithm,setAlgorithm]=useState("");
-  const [dropdown,setDropdown]=useState({})
+  const [dropdown,setDropdown]=useState("Ph.D")
 
   useEffect(() => {
     fetchMyAPI();
@@ -33,7 +33,7 @@ function AxiosData() {
         asofdate: 1678197239.27,
         namespace_id: 1,
         page_number: 1,
-        page_size: 15,
+        page_size: 125,
         search: "",
         filter: filter,
         asof: checkbox,
@@ -41,17 +41,12 @@ function AxiosData() {
       }
     );
 
-    await new Promise((r) => setTimeout(r, 0));
+    await new Promise((r) => setTimeout(r, 6000));
 
     setPost(a.data.data.topic);
     console.log("post data", { post });
 
-    // console.log("get", a.data.data.topic);
-    // console.log("get id", a.data.data.topic[0].id);
-    // console.log("get id", a.data.data.topic[1].id);
-    // console.log("get id", a.data.data.topic[2].id);
-    // console.log("get id", a.data.data.topic[3].id);
-    // console.log("get id", a.data.data.topic[4].id);
+   
   };
 
   console.log("post data", { post });
@@ -61,14 +56,15 @@ function AxiosData() {
   return (
     <>
       <h1>Hello world</h1>
+
+
       <label>Canonizer Algorithm:</label>
      <select value={dropdown} onChange={(e)=>{
+      console.log("algorithm Key : ",e.target.value)
         // console.log("event value => ",e.target.value)
         setDropdown(e.target.value)}}>
      {
-       algorithm && algorithm.map((item,index)=> <option  value={item.algorithm_key}>
-        {item.algorithm_label}
-        </option>)
+       algorithm && algorithm.map((item)=> <option  value={item.algorithm_key}>{item.algorithm_label} </option>)
      }
      </select>
       <label>Filter</label>
